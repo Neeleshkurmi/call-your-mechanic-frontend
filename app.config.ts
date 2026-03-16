@@ -32,10 +32,11 @@ const env = {
   appSlug: "call-your-mechanic",
   // S3 URL of the app logo - set this to the URL returned by generate_image when creating custom logo
   // Leave empty to use the default icon from assets/images/icon.png
-  logoUrl: "",
+  logoUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310519663442716272/eqH2BW5aKNMMWcWFVxhjVt/icon-FpEnu8BMmQQ3WR4ZQMFx5B.png",
   scheme: schemeFromBundleId,
   iosBundleId: bundleId,
   androidPackage: bundleId,
+  apiBaseUrl: process.env.API_BASE_URL || "http://127.0.0.1:3000",
 };
 
 const config: ExpoConfig = {
