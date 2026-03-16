@@ -69,9 +69,9 @@ export default function OTPVerifyScreen() {
     try {
       const otpCode = otp.join("");
 
-      // API call to POST /auth/otp/verify
+      // API call to POST /api/v1/auth/otp/verify
       const response = await fetch(
-        `http://127.0.0.1:3000/auth/otp/verify`,
+        `http://localhost:8080/api/v1/auth/otp/verify`,
         {
           method: "POST",
           headers: {
@@ -87,16 +87,16 @@ export default function OTPVerifyScreen() {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         // Success - store token and navigate to home
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         // TODO: Store accessToken in secure storage
-        // const token = data.accessToken;
+        // const token = data.data.accessToken;
         router.replace("/");
       } else {
         // Error response from API
         const errorMessage =
-          data.errors?.[0] || "Verification failed. Please try again.";
+          data.errors?.[0] || data.message || "Verification failed. Please try again.";
         setError(errorMessage);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       }

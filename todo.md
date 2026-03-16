@@ -79,3 +79,13 @@
 - [ ] Prepare project for publishing
 - [ ] Document any remaining known issues
 - [ ] Deliver to user with instructions
+
+## Phase 10: API Integration Update (localhost:8080)
+- [x] Update OTP Request endpoint to /api/v1/auth/otp/request
+- [x] Update OTP Verify endpoint to /api/v1/auth/otp/verify
+- [x] Update Role Management endpoint to /api/v1/auth/role
+- [x] Change base URL from http://127.0.0.1:3000 to http://localhost:8080
+- [x] Update response parsing to handle new API response format (success, message, data, errors)
+- [ ] Test all three flows with actual backend API
+- [ ] Verify error messages display correctly from API
+- [ ] Test token storage and retrieval from verify response

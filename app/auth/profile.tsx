@@ -46,9 +46,9 @@ export default function ProfileScreen() {
       // TODO: Get mobile from auth context
       const mobile = "+919876543210";
 
-      // API call to POST /auth/user/role
+      // API call to POST /api/v1/auth/role
       const response = await fetch(
-        `http://127.0.0.1:3000/auth/user/role`,
+        `http://localhost:8080/api/v1/auth/role`,
         {
           method: "POST",
           headers: {
@@ -64,18 +64,18 @@ export default function ProfileScreen() {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         // Success - update current role
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         setCurrentRole(selectedRole);
-        setSuccessMessage("User role updated successfully");
+        setSuccessMessage(data.message || "User role updated successfully");
 
         // Clear success message after 3 seconds
         setTimeout(() => setSuccessMessage(""), 3000);
       } else {
         // Error response from API
         const errorMessage =
-          data.errors?.[0] || "Failed to update role. Please try again.";
+          data.errors?.[0] || data.message || "Failed to update role. Please try again.";
         setSuccessMessage(errorMessage);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         setSelectedRole(currentRole);

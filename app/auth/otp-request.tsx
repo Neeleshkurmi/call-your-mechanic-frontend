@@ -59,9 +59,9 @@ export default function OTPRequestScreen() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
     try {
-      // API call to POST /auth/otp/request
+      // API call to POST /api/v1/auth/otp/request
       const response = await fetch(
-        `http://127.0.0.1:3000/auth/otp/request`,
+        `http://localhost:8080/api/v1/auth/otp/request`,
         {
           method: "POST",
           headers: {
@@ -75,7 +75,7 @@ export default function OTPRequestScreen() {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         // Success - navigate to OTP verify screen
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         router.push({
@@ -85,7 +85,7 @@ export default function OTPRequestScreen() {
       } else {
         // Error response from API
         const errorMessage =
-          data.errors?.[0] || "Failed to send OTP. Please try again.";
+          data.errors?.[0] || data.message || "Failed to send OTP. Please try again.";
         setError(errorMessage);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       }
