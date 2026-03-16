@@ -89,3 +89,16 @@
 - [ ] Test all three flows with actual backend API
 - [ ] Verify error messages display correctly from API
 - [ ] Test token storage and retrieval from verify response
+
+## Phase 11: Services Catalog Interface
+- [x] Create Services List Screen with vehicle type filter buttons (CAR, BIKE, TRUCK)
+- [x] Implement GET /api/v1/services API call with optional vehicleType parameter
+- [x] Display services in a FlatList with service name, description, and vehicle type
+- [x] Add loading state while fetching services
+- [x] Implement error handling for service fetch failures
+- [x] Add pull-to-refresh functionality to reload services
+- [x] Create Service Detail Screen showing full service information
+- [x] Implement navigation from services list to detail screen
+- [x] Add "Request Service" button on detail screen (placeholder for future booking flow)
+- [x] Integrate services screen into home/tab navigation
+- [x] Create comprehensive services API test suite (12 tests, all passing)
